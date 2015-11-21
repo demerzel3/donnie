@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Donnie Does Things</title>
+    <script src="lib/react.js"></script>
+    <script src="lib/react-dom.js"></script>
+    <script src="lib/require.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+    require(['build/app'], function() {
+    }, function(error) {
+        throw error;
+    });
+</script>
+</body>
+</html>
