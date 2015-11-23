@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {ItemView} from './item';
+import Item from '../components/Item';
+import { connect } from 'react-redux';
 
-class AppView extends React.Component
+class App extends React.Component
 {
     constructor() {
         super();
@@ -31,7 +31,7 @@ class AppView extends React.Component
                 <h1>Today Donnie has Done:</h1>
                 {this.state.items.map(function (item) {
                     return (
-                        <ItemView key={item.id} model={item}/>
+                        <Item key={item.id} model={item}/>
                     );
                 })}
             </div>
@@ -39,8 +39,8 @@ class AppView extends React.Component
     }
 }
 
+function select(state) {
+    return state;
+}
 
-ReactDOM.render(
-    ( <AppView></AppView> ),
-    document.querySelector('#root')
-);
+export default connect(select)(App);
