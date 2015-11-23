@@ -1,28 +1,8 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default class Item extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            editing: false,
-        };
-
-        this.edit = this.edit.bind(this);
-        this.save = this.save.bind(this);
-    }
-
-    edit() {
-        this.setState({ editing: true });
-    }
-
-    save() {
-        this.props.model.message = this.refs.editBox.value;
-        this.setState({ editing: false });
-    }
-
+export default class Item extends Component {
     render() {
-        if (this.state.editing) {
+        if (this.props.editing) {
             return this.renderEditor();
         } else {
             return this.renderDisplay();
@@ -32,8 +12,8 @@ export default class Item extends React.Component {
     renderDisplay() {
         return (
             <li>
-                {this.props.model.message}
-                <button type="button" onClick={this.edit}>Edit</button>
+                {this.props.message}
+                <button type="button" onClick={e => this.props.onEdit()}>Edit</button>
             </li>
         );
     }
@@ -41,15 +21,21 @@ export default class Item extends React.Component {
     renderEditor() {
         return (
             <li>
-                <input type="text" defaultValue={this.props.model.message} ref="editBox"/>
-                <button type="button" onClick={this.save}>Save</button>
+                <input type="text" defaultValue={this.props.message} ref="editBox"/>
+                <button type="button" onClick={() => this.props.onSave(this.refs.editBox.value)}>Save</button>
             </li>
         );
     }
 
     componentDidUpdate() {
-        if (this.state.editing) {
+        if (this.props.editing) {
             this.refs.editBox.focus();
         }
     }
 }
+
+Item.propTypes = {
+    editing: PropTypes.bool.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+};
