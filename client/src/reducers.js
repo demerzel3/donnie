@@ -1,3 +1,5 @@
+import { ActionTypes } from './actions';
+
 const initialState = {
     todos: [
         {
@@ -18,8 +20,23 @@ const initialState = {
     ],
 };
 
+function todos(state = [], action) {
+    switch (action.type) {
+        case ActionTypes.ADD_TODO:
+            return [
+                ...state, {
+                    id: action.id,
+                    message: action.message,
+                    editing: false,
+                }
+            ];
+        default:
+            return state;
+    }
+}
+
 export function todoApp(state = initialState, action) {
-    // For now, don’t handle any actions
-    // and just return the state given to us.
-    return state;
+    return {
+        todos: todos(state.todos, action),
+    };
 }

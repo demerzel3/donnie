@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Item from '../components/Item';
+import { addTodo } from '../actions';
 import { connect } from 'react-redux';
 
 class App extends Component
@@ -10,7 +11,7 @@ class App extends Component
 
     render() {
         // Injected by the call to connect.
-        const { todos } = this.props;
+        const { dispatch, todos } = this.props;
 
         return (
             <div>
@@ -25,8 +26,17 @@ class App extends Component
                         />
                     );
                 })}
+                <p>Add another:</p>
+                <input type="text" ref="newTodoBox" /> <button onClick={e => this.newButtonClickHandler(dispatch)}>Add</button>
             </div>
         );
+    }
+
+    newButtonClickHandler(dispatch) {
+        const { newTodoBox } = this.refs;
+        dispatch(addTodo(newTodoBox.value));
+
+        newTodoBox.value = '';
     }
 }
 
