@@ -1,3 +1,2 @@
 client/node_modules/
-client/build/
-node_modules/
+client/jspm_packages/

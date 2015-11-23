@@ -1,14 +1,14 @@
 Donnie Does Things (using React)
 ================================
 
-Console #1
+Dependencies
 
-- `npm install -g babel-cli`
-- `npm install`
-- `./tools/client-watch.sh`
-
-Console #2
-
-- `npm install -g http-server`
 - `cd client`
+- `npm install`
+- `jspm install`
+
+Develop
+
+- `cd client`
+- `npm install -g http-server`
 - `http-server`

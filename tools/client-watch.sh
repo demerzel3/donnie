@@ -1,1 +1,0 @@
-babel --presets react,es2015 client/src --out-dir client/build --plugins=transform-es2015-modules-amd --watch
