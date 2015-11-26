@@ -13,7 +13,9 @@ export default class Item extends Component {
         return (
             <li>
                 {this.props.message}
-                <button type="button" onClick={e => this.props.onEdit()}>Edit</button>
+                <button type="button"
+                        className="btn btn-default btn-xs"
+                        onClick={e => this.props.onEdit()}>Edit</button>
             </li>
         );
     }
@@ -22,7 +24,9 @@ export default class Item extends Component {
         return (
             <li>
                 <input type="text" defaultValue={this.props.message} ref="editBox"/>
-                <button type="button" onClick={() => this.props.onSave(this.refs.editBox.value)}>Save</button>
+                <button className="btn btn-default"
+                        type="button"
+                        onClick={() => this.props.onSave(this.refs.editBox.value)}>Save</button>
             </li>
         );
     }

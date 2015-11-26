@@ -4,6 +4,10 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from './containers/App'
 import {todoApp} from './reducers'
+import Moment from 'moment'
+import momentLocalizer from 'react-widgets/lib/localizers/moment'
+
+momentLocalizer(Moment);
 
 let store = createStore(todoApp);
 
