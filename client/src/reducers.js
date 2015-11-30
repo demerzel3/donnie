@@ -1,26 +1,28 @@
 import { ActionTypes } from './actions';
+import { combineReducers } from 'redux';
 
 const initialState = {
-    todos: [
-        {
-            id: 1,
-            message: 'Foo',
-            editing: false,
-        },
-        {
-            id: 2,
-            message: 'Bar',
-            editing: false,
-        },
-        {
-            id: 3,
-            message: 'Baz',
-            editing: false,
-        },
-    ],
+    apiToken: null,
+    team: 'adespresso',
+    todos: {
+        items: [],
+    },
 };
 
-function todos(state = [], action) {
+function apiToken(token = initialState.apiToken, action) {
+    switch (action.type) {
+        case ActionTypes.SET_ACCESS_TOKEN:
+            return action.accessToken;
+        default:
+            return token;
+    }
+}
+
+function team(name = initialState.team, action) {
+    return name;
+}
+
+function todos(state = initialState.todos, action) {
     switch (action.type) {
         case ActionTypes.ADD_TODO:
             return [
@@ -35,8 +37,8 @@ function todos(state = [], action) {
     }
 }
 
-export function todoApp(state = initialState, action) {
-    return {
-        todos: todos(state.todos, action),
-    };
-}
+export let todoApp = combineReducers({
+    apiToken,
+    team,
+    todos,
+});
